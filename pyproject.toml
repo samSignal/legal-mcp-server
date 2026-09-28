@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legal-mcp-server"
+version = "1.0.0"
+description = "MCP server that lets AI assistants and agents search, read and cite a legal document collection via hybrid search."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "mcp>=1.10",
+    "pydantic>=2",
+    "legal-hybrid-search @ git+https://github.com/samSignal/legal-hybrid-search.git",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "anyio>=4"]
+
+[project.scripts]
+legal-mcp = "legal_mcp.server:main"
+
+[tool.setuptools]
+packages = ["legal_mcp"]
+
+[tool.setuptools.package-data]
+legal_mcp = ["data/*.jsonl"]
